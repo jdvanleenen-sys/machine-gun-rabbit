@@ -6,7 +6,7 @@ a content platform. Someone lands from a poster, a QR code, or the Instagram bio
 and leaves knowing who the band is, where to catch them, and how to book or follow.
 
 ## The one job
-Two co-equal actions: **Book the band** and **Follow on Instagram**. Everything
+Two co-equal actions: **Book the band** and **Follow on Instagram** (positioning line: "Calgary's Party Band. From ABBA to AC/DC..."). Everything
 points at one of them. Neither outranks the other (pink Book, gold Follow).
 
 ## Scope — v1
