@@ -35,7 +35,7 @@ the `wordmark-pink.png` artwork — never set in Anton. Real photos, photo-scrim
 - [x] Header: lockup + anchors + equal Book/Follow.
 - [x] Hero: lockup (lips + wordmark), slogan, positioning, two equal CTAs, photo scrim.
 - [x] Where We Play: venue rows + Instagram note (no stale dates).
-- [x] The Set: song chips (set-closers in pink).
+- [x] The Set: song chips (uniform; 50+ song repertoire, sample shown).
 - [x] The Band: five member cards + photos.
 - [x] Follow / Book: two equal CTAs to Instagram.
 - [x] Footer: handle, slogan, wordmark, year.

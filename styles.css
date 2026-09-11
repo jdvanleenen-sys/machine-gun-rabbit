@@ -92,7 +92,6 @@ img { max-width: 100%; }
 .song-chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
 .chip { display: inline-flex; align-items: baseline; gap: 8px; border: 1px solid var(--line); border-radius: var(--radius-pill); padding: 8px 16px; font-size: var(--text-sm); color: var(--white); white-space: nowrap; transition: var(--t-hover); }
 .chip:hover { border-color: var(--pink); }
-.chip-pink { border-color: var(--pink); }
 .chip em { color: var(--muted); font-style: normal; font-size: var(--text-xs); }
 
 /* The Band */
