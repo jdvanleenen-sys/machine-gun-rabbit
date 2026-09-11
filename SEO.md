@@ -1,8 +1,8 @@
 # SEO & AEO — Machine Gun Rabbit site
 
-Checked against Rymac's metadata method and Fred's audit checklist. This is a
-single-page site, so the multi-page items (hub-and-spoke, per-post interlinking)
-become the roadmap below rather than fixes.
+**Method (canonical, reusable):** `90 Jeff Standards/playbooks/seo-aeo-checklist.md`.
+This file is only *this site's status* against that standard. This is a single-page
+site, so the multi-page items (hub-and-spoke, per-post interlinking) are roadmap, below.
 
 ## Done (live)
 - One `<title>` (57 chars, keyword "Calgary's Party Band"), one meta description
