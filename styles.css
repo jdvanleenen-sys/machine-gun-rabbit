@@ -73,6 +73,7 @@ img { max-width: 100%; }
 .hero-scrim { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,10,10,0.72), rgba(10,10,10,0.9)); }
 .hero-inner { position: relative; max-width: var(--container); margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
 .hero-mark { height: 132px; }
+.hero-h1 { margin: 0; line-height: 0; }
 .hero-word { width: min(100%, 460px); margin-top: 20px; }
 .hero-slogan { font-family: var(--font-display); text-transform: uppercase; font-size: var(--display-lg); line-height: var(--leading-display); margin-top: 24px; }
 .hero-positioning { font-size: var(--text-lg); color: var(--white); margin-top: 12px; }
@@ -112,6 +113,13 @@ img { max-width: 100%; }
 .member-name { font-family: var(--font-display); text-transform: uppercase; font-size: 20px; color: var(--white); line-height: 1; }
 .member-role { font-size: var(--text-xs); letter-spacing: var(--label-tracking); text-transform: uppercase; color: var(--pink); margin-left: 12px; }
 .member-line { font-size: var(--text-sm); color: var(--muted); margin-top: 8px; }
+
+/* FAQ */
+.faq { display: grid; gap: 16px; margin-top: 24px; max-width: var(--measure); }
+.faq-item { border-bottom: 1px solid var(--line); padding-bottom: 16px; }
+.faq-item:last-child { border-bottom: 0; }
+.faq-q { font-family: var(--font-display); text-transform: uppercase; font-weight: 400; font-size: 22px; color: var(--white); line-height: 1.1; }
+.faq-a { color: var(--muted); font-size: var(--text-md); margin-top: 8px; }
 
 /* Footer */
 .site-footer { border-top: 1px solid var(--pink); padding: 32px var(--gutter); text-align: center; }
