@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jdvanleenen-sys.github.io/machine-gun-rabbit/sitemap.xml
+Sitemap: https://machinegunrabbit.com/sitemap.xml
