@@ -115,7 +115,7 @@ img { max-width: 100%; }
 .member-line { font-size: var(--text-sm); color: var(--muted); margin-top: 8px; }
 
 /* Booking page */
-.book-primary { margin: 8px auto 0; }
+.book-primary { margin: 8px auto 0; display: flex; flex-direction: column; align-items: center; }
 .book-label { color: var(--gold); text-transform: uppercase; letter-spacing: 0.14em; font-size: var(--label-size); font-weight: 700; }
 .book-phone { display: block; font-family: var(--font-display); text-transform: uppercase; font-size: clamp(40px, 8vw, 72px); color: var(--pink); text-decoration: none; line-height: 1; margin: 10px 0 24px; }
 .book-phone:hover { color: var(--pink-bright); }
