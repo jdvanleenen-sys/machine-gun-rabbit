@@ -82,6 +82,9 @@ img { max-width: 100%; }
 .cta-row-center { justify-content: center; }
 .hero .cta-row { justify-content: center; }
 
+/* Watch — vertical live clip */
+.band-video { display: block; width: min(100%, 400px); height: auto; aspect-ratio: 9 / 16; margin: 24px auto 0; background: var(--bg-raised); border: 1px solid var(--line); border-radius: var(--radius-card); }
+
 /* Where We Play — next-up featured show + ShowRow list */
 .next-up { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px 24px; background: var(--bg-raised); border: 1px solid var(--line); border-left: 4px solid var(--pink); border-radius: var(--radius-card); padding: 24px 28px; margin-top: 24px; }
 .next-date { font-family: var(--font-display); text-transform: uppercase; font-size: var(--display-sm); color: var(--pink); line-height: 1; }
