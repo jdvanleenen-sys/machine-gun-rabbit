@@ -85,19 +85,15 @@ img { max-width: 100%; }
 /* Watch — vertical live clip */
 .band-video { display: block; width: min(100%, 400px); height: auto; aspect-ratio: 9 / 16; margin: 24px auto 0; background: var(--bg-raised); border: 1px solid var(--line); border-radius: var(--radius-card); }
 
-/* Where We Play — next-up featured show + ShowRow list */
-.next-up { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px 24px; background: var(--bg-raised); border: 1px solid var(--line); border-left: 4px solid var(--pink); border-radius: var(--radius-card); padding: 24px 28px; margin-top: 24px; }
-.next-date { font-family: var(--font-display); text-transform: uppercase; font-size: var(--display-sm); color: var(--pink); line-height: 1; }
-.next-venue { font-family: var(--font-display); text-transform: uppercase; font-size: var(--display-sm); color: var(--white); line-height: 1; }
-.next-time { font-family: var(--font-display); text-transform: uppercase; color: var(--gold); font-size: 20px; white-space: nowrap; }
-.next-flag { grid-column: 1 / -1; font-size: var(--text-sm); color: var(--muted); }
-.next-flag b { color: var(--pink); }
-.venue-label { margin-top: 36px; }
-.show-list { margin-top: 16px; }
-.show-row { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 16px; padding: 16px 12px; border-bottom: 1px solid var(--line); transition: var(--t-hover); }
-.show-row:hover { background: var(--bg-raised); }
-.show-venue { font-family: var(--font-display); text-transform: uppercase; font-size: var(--display-sm); color: var(--white); line-height: 1; }
-.show-note { font-size: var(--text-sm); color: var(--muted); }
+/* Where We Play — upcoming gig list (next show highlighted) */
+.gig-list { display: grid; gap: 12px; margin-top: 24px; }
+.gig-row { display: grid; grid-template-columns: 240px 1fr auto; align-items: center; gap: 8px 24px; background: var(--bg-raised); border: 1px solid var(--line); border-left-width: 4px; border-radius: var(--radius-card); padding: 20px 24px; }
+.gig-next { border-left-color: var(--pink); }
+.gig-date { font-family: var(--font-display); text-transform: uppercase; font-size: 20px; color: var(--pink); line-height: 1.1; }
+.gig-venue { font-family: var(--font-display); text-transform: uppercase; font-size: var(--display-sm); color: var(--white); line-height: 1; }
+.gig-time { font-family: var(--font-display); text-transform: uppercase; color: var(--gold); font-size: 20px; white-space: nowrap; }
+.gig-flag { color: var(--pink); }
+.gig-note { grid-column: 2 / -1; font-size: var(--text-sm); color: var(--muted); }
 
 /* The Set — SongChip */
 .song-chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
@@ -147,7 +143,8 @@ img { max-width: 100%; }
   .site-nav.open { max-height: 340px; }
   .site-nav > a { width: 100%; padding: 14px var(--gutter); border-top: 1px solid var(--line); }
   .site-nav > a.btn { border-radius: 0; justify-content: flex-start; }
-  .next-up { grid-template-columns: 1fr; }
+  .gig-row { grid-template-columns: 1fr; }
+  .gig-note { grid-column: auto; }
   .band-grid { grid-template-columns: 1fr; }
   .section, .hero { padding-top: 56px; padding-bottom: 56px; }
 }

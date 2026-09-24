@@ -22,7 +22,9 @@ The Band, Follow / Book, Footer. Deploy to GitHub Pages.
 - Verified channel: Instagram `@machinegunrabbit`.
 
 ## Honesty rules
-- No stale show dates. List venues + "dates go up on Instagram first."
+- No stale show dates. The Upcoming Shows list (index.html `.gig-list`) carries
+  confirmed gigs only, mirrored in the JSON-LD `MusicEvent` entries. Remove each
+  gig from both once it has passed. Show a time only when the venue has published it.
 - Book routes to Instagram DM until a booking email exists.
 - No fabricated bios, quotes, counts, or links.
 
