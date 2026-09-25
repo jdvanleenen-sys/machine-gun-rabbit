@@ -20,6 +20,8 @@ site, so the multi-page items (hub-and-spoke, per-post interlinking) are roadmap
   so it plays in every browser; `preload="metadata"` keeps first load light.
 - Custom domain `machinegunrabbit.com` live (CNAME); canonical, OG image, sitemap and
   JSON-LD `@id`s all use it.
+- Visitor analytics: GoatCounter on `index.html` and `book.html` (cookieless, no
+  banner needed). Dashboard: https://machinegunrabbit.goatcounter.com
 - Outbound authority links: venue names link out to Google Maps (new tab, trust signal).
 - `robots.txt` + `sitemap.xml`; branded `404.html`; geo tags; Open Graph + Twitter card
   with a lips-on-black share image; `theme-color`; `prefers-reduced-motion`.
@@ -29,9 +31,6 @@ site, so the multi-page items (hub-and-spoke, per-post interlinking) are roadmap
   (HTML-file method). Confirm the property shows as verified in Jeff's account, submit
   `sitemap.xml`, then Inspect + Request indexing. Bonus: import into Bing Webmaster
   Tools (feeds ChatGPT search).
-- **Visitor analytics**: none installed yet. Plan: GoatCounter (free, cookieless, one
-  script tag). Needs Jeff's GoatCounter site code before the tag goes in.
-
 ## Roadmap (when there's a video / more pages)
 - The Sept 19 clip is on the home page (self-hosted). Next: post it to YouTube, then build a **recap/blog page**
   here that embeds it, targets one keyword ("Machine Gun Rabbit live at Langdon"),
