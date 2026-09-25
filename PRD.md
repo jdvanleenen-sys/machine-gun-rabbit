@@ -25,7 +25,8 @@ The Band, Follow / Book, Footer. Deploy to GitHub Pages.
 - No stale show dates. The Upcoming Shows list (index.html `.gig-list`) carries
   confirmed gigs only, mirrored in the JSON-LD `MusicEvent` entries. Remove each
   gig from both once it has passed. Show a time only when the venue has published it.
-- Book routes to Instagram DM until a booking email exists.
+- Book routes to `book.html`: call or text Phil at (403) 669-8116, with Instagram and
+  Facebook as the alternatives. The FAQ (visible and JSON-LD) must say the same.
 - No fabricated bios, quotes, counts, or links.
 
 ## Design
