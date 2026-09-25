@@ -2,7 +2,8 @@
 
 One-page site for Machine Gun Rabbit, Calgary's Party Band. Points people to the
 band: book the band, follow on Instagram, see where we play. Built to conform to
-the Machine Gun Rabbit Design System (one folder up).
+the Machine Gun Rabbit Design System, which lives in Jeff-HQ at
+`10 Ventures/machine-gun-rabbit/Machine Gun Rabbit Design System/`.
 
 ## Stack
 Plain HTML, CSS, a little JavaScript. No framework, no build step. Fonts load from
@@ -17,8 +18,9 @@ Then visit http://localhost:8000
 
 ## Structure
 ```
-website/
+machine-gun-rabbit/
   index.html    the page
+  book.html     booking page (call or text Phil)
   styles.css    all styling (tokens mirror the Design System)
   script.js     mobile nav + year
   assets/       logo-lips.png, wordmark-pink.png, photos/
@@ -33,4 +35,4 @@ redeploys automatically. Keep asset paths relative.
 ## Editing
 - Copy or a link: `index.html`.
 - Look and feel: change it in the Design System first
-  (`../Machine Gun Rabbit Design System/`), then mirror it in `styles.css`.
+  (in Jeff-HQ, see above), then mirror it in `styles.css`.
