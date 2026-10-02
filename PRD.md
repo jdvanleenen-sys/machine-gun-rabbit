@@ -15,7 +15,7 @@ The Band, Follow / Book, Footer. Deploy to GitHub Pages.
 
 ## Confirmed facts (source: the Design System)
 - Machine Gun Rabbit, Calgary, AB. Positioning: "Calgary's Party Band. From ABBA
-  to AC/DC." Slogan: "Not famous... But Known." Hook: "27 songs. One night."
+  to AC/DC." Slogan: "Not famous... But Known." Hook: "50+ songs. One night."
 - Lineup (five): Libby (vocals), Mike (vocals, rhythm guitar), Phil (lead guitar),
   Jeff (bass), Tyler (drums).
 - Venues played: Langdon, Elbow River Casino, The Kings Head, Big Al's.
