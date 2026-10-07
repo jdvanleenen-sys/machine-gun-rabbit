@@ -93,6 +93,7 @@ img { max-width: 100%; }
 .gig-venue { font-family: var(--font-display); text-transform: uppercase; font-size: var(--display-sm); color: var(--white); line-height: 1; }
 .gig-time { font-family: var(--font-display); text-transform: uppercase; color: var(--gold); font-size: 20px; white-space: nowrap; }
 .gig-flag { color: var(--pink); }
+.gig-cancelled s { color: var(--muted); }
 .gig-note { grid-column: 2 / -1; font-size: var(--text-sm); color: var(--muted); }
 
 /* The Set — SongChip */
