@@ -7,8 +7,8 @@ site, so the multi-page items (hub-and-spoke, per-post interlinking) are roadmap
 ## Done (live)
 - One `<title>` (57 chars, keyword "Calgary's Party Band"), one meta description
   (~150 chars), one real text `<h1>` (band name was image-only before), canonical.
-- Structured data (JSON-LD): `MusicGroup`, one `MusicEvent` per confirmed night (nine,
-  Oct 16 to Dec 5, with start/end times), `Place` venues, `FAQPage`. Mirrors the
+- Structured data (JSON-LD): `MusicGroup`, one `MusicEvent` per confirmed night (seven,
+  Oct 30 to Dec 5, with start/end times), `Place` venues, `FAQPage`. Mirrors the
   visible Upcoming Shows list; drop each gig from both after it passes.
 - Visible FAQ, answer-first, matching the FAQ schema (feeds AI answer engines).
 - Descriptive alt text on every content image; decorative images have empty alt.
