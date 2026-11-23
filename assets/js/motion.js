@@ -72,7 +72,7 @@
       bit.p.copy(point).add(new THREE.Vector3((Math.random() - .5) * .5, (Math.random() - .5) * .5, (Math.random() - .5) * .5));
       toCamera.copy(world.camera.position).sub(point).normalize().multiplyScalar(1.2 + Math.random() * 3.2);
       bit.v.set((Math.random() - .5) * 8.5, 1.4 + Math.random() * 3.6, (Math.random() - .5) * 6).add(toCamera);
-      if (sweep) bit.v.x -= point.x * (.25 + Math.random() * .62);
+      if (sweep) bit.v.addScaledVector(sweep, .3 + Math.random() * .8);
     }
   }
 
@@ -129,12 +129,17 @@
     world.camera.lookAt(look.x + pointer.sx * .45, look.y + pointer.sy * .25, look.z);
   }
 
+  function showGun(y) {
+    var faq = $('faq'), hide = !motionOn || y < anchors[1] * .55 || (faq ? y + 150 > faq.offsetTop : y >= anchors[6] + 200), gun = $('bubbleGun');
+    if (gun.hidden !== hide) gun.hidden = hide;
+  }
+
   function loop(ms) {
     requestAnimationFrame(loop);
     var t = ms / 1000, dt = Math.min(.05, t - (loop.last || t)); loop.last = t;
     var y = window.scrollY;
     smoothY = motionOn ? smoothY + (y - smoothY) * .085 : y;
-    updateMemberFromScroll(smoothY); placeCamera();
+    updateMemberFromScroll(smoothY); placeCamera(); showGun(y);
     if (motionOn) { animateRoom(t); fx.update(t, dt); animateBubbles(dt, t); }
     fx.render();
     if (!document.body.classList.contains('live') && world.ready) document.body.classList.add('live');
@@ -157,7 +162,7 @@
       if (!motionOn || e.target.closest('a,button,.panel')) return;
       var found = pickMember(e);
       if (found.member) { found.member.userData.jump = 1; setMember(found.member.userData.index); world.hit = 1; }
-      burst(found.point, found.member ? 54 : 30); fx.addHype(found.member ? .22 : .13);
+      burst(found.point, found.member ? 54 : 30);
     });
   }
 
@@ -167,7 +172,7 @@
         document.querySelectorAll('.song').forEach(function (s) { s.setAttribute('aria-pressed', s === b ? 'true' : 'false'); });
         $('nowCode').textContent = b.dataset.code; $('nowSong').textContent = b.dataset.song; $('nowLine').textContent = b.dataset.line;
         world.hit = 1; world.juke.show(b.dataset.code, b.dataset.song, b.dataset.code.charAt(0) === 'A' ? '#ff1493' : '#c9a227');
-        if (motionOn) { burst(new THREE.Vector3(26.6, 6, 2), 44); fx.addHype(.18); }
+        if (motionOn) burst(new THREE.Vector3(26.6, 6, 2), 44);
       });
     });
   }
@@ -179,6 +184,7 @@
         if (world.members[i]) world.members[i].userData.jump = 1;
       });
     });
+    $('bubbleGun').addEventListener('click', function () { if (motionOn) fx.fire(); });
     $('motion').addEventListener('click', function () { setMotion(!motionOn); });
   }
 

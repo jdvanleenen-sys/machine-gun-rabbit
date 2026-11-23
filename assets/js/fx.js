@@ -121,14 +121,21 @@
   window.MGRFx = function (world, low, burst) {
     var pools = addPools(world), smoke = addSmoke(world, low ? 9 : 22), tickets = addTickets(world), juke = addJukeboxParts(world), composer = addBloom(world);
     addReflections(world); addGear(world);
-    var hype = 0, shots = [], hit = new THREE.Vector3(), dir = new THREE.Vector3(), m = new THREE.Matrix4(), meter = document.getElementById('hypeFill'), tag = document.getElementById('hypeLabel');
-    var neon = new THREE.Color(), cannons = [[-15, 2.4, -3], [-11.5, 2, -1.5], [11.5, 2, -1.5], [15, 2.4, -3]];
+    var hype = 0, shots = [], hit = new THREE.Vector3(), dir = new THREE.Vector3(), m = new THREE.Matrix4(), ahead = new THREE.Vector3(), side = new THREE.Vector3(), lift = new THREE.Vector3();
+    var neon = new THREE.Color();
 
-    function drop() {
-      hype = 0; world.hit = 1; tag.textContent = "Now that's a crowd.";
-      setTimeout(function () { tag.textContent = 'Crowd noise'; }, 2600);
+    function spray() {
+      var cam = world.camera, reach = Math.tan(cam.fov * Math.PI / 360) * 10 * cam.aspect;
+      cam.getWorldDirection(ahead); side.crossVectors(ahead, cam.up).normalize(); lift.crossVectors(side, ahead);
+      [-.92, -.55, .55, .92].forEach(function (off) {
+        var from = cam.position.clone().addScaledVector(ahead, 10).addScaledVector(side, off * reach).addScaledVector(lift, -2.2);
+        burst(from, low ? 7 : 16, side.clone().multiplyScalar(-off * reach * .75));
+      });
+    }
+    function fire() {
+      hype = 1; world.hit = 1;
       world.members.forEach(function (b) { if (b) b.userData.jump = 1; });
-      for (var i = 0; i < 6; i++) shots.push(i * .2);
+      if (shots.length < 18) for (var i = 0; i < 6; i++) shots.push(i * .16);
     }
     function updateLights(t) {
       pools.forEach(function (p) {
@@ -148,17 +155,16 @@
       world.juke.neon.material.color.copy(neon.setHex(PINK).lerp(new THREE.Color(GOLD), (Math.sin(t * 1.1) + 1) * .32));
     }
     function updateHype(dt) {
-      hype = Math.max(0, hype - dt * .035);
-      meter.style.transform = 'scaleX(' + hype.toFixed(3) + ')';
+      hype = Math.max(0, hype - dt * .45);
       world.crowd.forEach(function (r, i) { r.position.y += Math.abs(Math.sin(performance.now() / 150 + i)) * hype * .55; });
       for (var i = shots.length - 1; i >= 0; i--) {
         shots[i] -= dt;
-        if (shots[i] <= 0) { shots.splice(i, 1); cannons.forEach(function (c) { burst(new THREE.Vector3(c[0], c[1], c[2]), low ? 7 : 16, true); }); }
+        if (shots[i] <= 0) { shots.splice(i, 1); spray(); }
       }
     }
     return {
       update: function (t, dt) { updateLights(t); updateProps(t); updateHype(dt); },
-      addHype: function (n) { hype = Math.min(1, hype + n); if (hype >= 1) drop(); },
+      fire: fire,
       resize: function (w, h) { if (composer) { composer.setPixelRatio(world.renderer.getPixelRatio()); composer.setSize(w, h); } },
       render: function () { if (composer) composer.render(); else world.renderer.render(world.scene, world.camera); },
       state: function () { return { hype: hype, bloom: !!composer, tickets: tickets.length }; }
