@@ -32,7 +32,7 @@ The Band, Follow / Book, Footer. Deploy to GitHub Pages.
 ## Design
 Conforms to the Machine Gun Rabbit Design System. Black `#0a0a0a` ground, pink
 `#FF1493`, gold `#c9a227`, white text. Anton display, Inter body. The band name is
-the `wordmark-pink.png` artwork — never set in Anton. Real photos, photo-scrim hero.
+the `wordmark-pink.png` artwork — never set in Anton. Real photos. The homepage is a 3D walk-in venue (2026-11-22). Its muted video loops must never be presented as the band's sound, because the source audio is dubbed from the original artists.
 
 ## Delivery checklist
 - [x] Header: lockup + anchors + equal Book/Follow.

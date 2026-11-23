@@ -25,7 +25,8 @@ the band name in Anton — always place the wordmark artwork.
 | Scope, sections, checklist | `PRD.md` |
 | Brand (voice, color, type, logo, components) | `Jeff-HQ/10 Ventures/machine-gun-rabbit/Machine Gun Rabbit Design System/` |
 | The page | `index.html` |
-| All styling | `styles.css` |
+| Homepage styling and 3D venue | `assets/venue.css`, `assets/js/`, `assets/venue/` |
+| Styling for `book.html` and `404.html` | `styles.css` |
 | Mobile nav + year | `script.js` |
 | Logo, wordmark, photos | `assets/` |
 | Setup, run, deploy | `README.md` |

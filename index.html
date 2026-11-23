@@ -32,7 +32,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=7" />
+  <script>document.documentElement.className = "js";</script>
+  <link rel="stylesheet" href="assets/venue.css?v=1" />
 
   <script type="application/ld+json">
   {
@@ -98,134 +99,87 @@
   </script>
 </head>
 <body id="top">
-  <!-- Header -->
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="#top" class="brand" aria-label="Machine Gun Rabbit home">
-        <img src="assets/logo-lips.png" alt="" class="brand-mark" />
-        <img src="assets/wordmark-pink.png" alt="Machine Gun Rabbit" class="brand-word" />
-      </a>
-      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav">
-        <span></span><span></span><span></span>
-      </button>
-      <nav id="nav" class="site-nav">
-        <a href="#shows">Where We Play</a>
-        <a href="#set">The Set</a>
-        <a href="#band">The Band</a>
-        <a href="book.html" class="btn btn-book btn-sm">Book</a>
-        <a href="https://www.instagram.com/machinegunrabbit" target="_blank" rel="noopener" class="btn btn-follow btn-sm">Follow</a>
-      </nav>
+<canvas id="world" aria-hidden="true"></canvas>
+<video id="ledLeft" class="led" src="assets/venue/loop-left.mp4" muted loop playsinline preload="metadata" aria-hidden="true"></video>
+<video id="ledRight" class="led" src="assets/venue/loop-right.mp4" muted loop playsinline preload="metadata" aria-hidden="true"></video>
+<video id="ledLoop" class="led" src="assets/venue/loop.mp4" poster="assets/venue/loop-poster.jpg" muted loop playsinline preload="auto" aria-hidden="true"></video>
+
+<header class="head"><div>
+  <a class="brand" href="#door" aria-label="Machine Gun Rabbit, back to the front door"><img src="assets/logo-lips.png" alt=""><img src="assets/wordmark-pink.png" alt="Machine Gun Rabbit"></a>
+  <nav aria-label="Rooms">
+    <a href="#stage">The Stage</a><a href="#shows">Box Office</a><a href="#set">Jukebox</a><a href="#band">Green Room</a>
+    <button id="motion" type="button" aria-pressed="false">Motion off</button>
+    <a class="btn btn-pink" href="book.html">Book</a>
+    <a class="btn btn-gold" href="https://www.instagram.com/machinegunrabbit">Follow</a>
+  </nav>
+</div></header>
+
+<div class="hype" aria-hidden="true"><span id="hypeLabel">Crowd noise</span><i><b id="hypeFill"></b></i></div>
+
+<main>
+  <section id="door" class="act">
+    <h1 class="sr">Nobody came here to sit down. Machine Gun Rabbit, Calgary's Party Band.</h1>
+    <div class="gate">
+      <div id="nextShow" class="ticket"></div>
+      <p class="walk">Scroll to walk in</p>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <!-- Hero -->
-    <section class="hero">
-      <img src="assets/photos/machine-gun-rabbit-mike-libby-live-calgary.jpg" alt="Mike and Libby singing lead with Machine Gun Rabbit on stage" class="hero-bg" width="1400" height="934" />
-      <div class="hero-scrim"></div>
-      <div class="hero-inner">
-        <img src="assets/logo-lips.png" alt="" class="hero-mark" />
-        <h1 class="hero-h1"><img src="assets/wordmark-pink.png" alt="Machine Gun Rabbit — Calgary's Party Band" class="hero-word" /></h1>
-        <p class="hero-slogan">Not famous... But Known.</p>
-        <p class="hero-positioning">Calgary's Party Band. From ABBA to AC/DC...</p>
-        <div class="cta-row">
-          <a class="btn btn-book btn-lg" href="book.html">Book the band</a>
-          <a class="btn btn-follow btn-lg" href="https://www.instagram.com/machinegunrabbit" target="_blank" rel="noopener">Instagram</a>
-          <a class="btn btn-follow btn-lg" href="https://www.facebook.com/p/Machine-Gun-Rabbit-100047671462257/" target="_blank" rel="noopener">Facebook</a>
-        </div>
-        <p class="hero-tagline">ABBA to AC/DC — and we mean that literally</p>
-      </div>
-    </section>
+  <section id="stage" class="act"><div class="wrap"><div class="panel pink">
+    <p class="eyebrow">The Stage</p>
+    <h2>Not famous... But Known.</h2>
+    <p class="sub">Calgary's Party Band. From ABBA to AC/DC. Click or tap anywhere in the room.</p>
+    <div class="actions"><a class="btn btn-pink" href="#shows">See upcoming shows</a></div>
+  </div></div></section>
 
-    <!-- On stage -->
-    <section id="on-stage" class="section section-center">
-      <div class="section-head section-head-center">
-        <p class="eyebrow">On stage</p>
-        <h2 class="section-title">Langdon, Sept 19, 2026</h2>
-      </div>
-      <img class="stage-photo" src="assets/photos/machine-gun-rabbit-all-five-on-stage-langdon.jpg" alt="All five members of Machine Gun Rabbit playing on stage in Langdon under purple lights" loading="lazy" width="1400" height="934" />
-    </section>
+  <section id="shows" class="act right"><div class="wrap"><div class="panel gold">
+    <p class="eyebrow">Box Office</p><h2>Upcoming shows</h2>
+    <div class="tickets">
+      <div class="gig-row ticket"><div><p class="t-date gig-date">Fri Nov 27 &amp; Sat Nov 28</p><a class="t-venue gig-venue" href="https://www.google.com/maps/search/?api=1&amp;query=Elbow+River+Casino+Calgary">Elbow River Casino</a></div><div class="stub"><span class="t-time gig-time">9:15 PM &ndash; 1 AM</span><span class="t-place">Calgary, AB</span></div></div>
+      <div class="gig-row ticket"><div><p class="t-date gig-date">Fri Dec 4 &amp; Sat Dec 5</p><a class="t-venue gig-venue" href="https://www.google.com/maps/search/?api=1&amp;query=The+Kings+Head+Calgary">The Kings Head</a></div><div class="stub"><span class="t-time gig-time">9:30 PM &ndash; 1:30 AM</span><span class="t-place">Calgary, AB</span></div></div>
+    </div>
+    <p class="sub">New dates go up on <a href="https://www.instagram.com/machinegunrabbit">@machinegunrabbit</a> first.</p>
+  </div></div></section>
 
-    <!-- Where We Play -->
-    <section id="shows" class="section">
-      <div class="section-head">
-        <p class="eyebrow">Where we play</p>
-        <h2 class="section-title">Upcoming shows</h2>
-        <p class="section-sub">Calgary and area, through December.</p>
-        <div class="rule rule-pink"></div>
-      </div>
-      <div class="gig-list">
-        <div class="gig-row gig-next">
-          <span class="gig-date">Fri Nov 27 &amp; Sat Nov 28</span>
-          <a class="gig-venue" href="https://www.google.com/maps/search/?api=1&amp;query=Elbow+River+Casino+Calgary" target="_blank" rel="noopener">Elbow River Casino</a>
-          <span class="gig-time">9:15 PM &ndash; 1 AM</span>
-          <span class="gig-note">Calgary, AB</span>
-        </div>
-        <div class="gig-row">
-          <span class="gig-date">Fri Dec 4 &amp; Sat Dec 5</span>
-          <a class="gig-venue" href="https://www.google.com/maps/search/?api=1&amp;query=The+Kings+Head+Calgary" target="_blank" rel="noopener">The Kings Head</a>
-          <span class="gig-time">9:30 PM &ndash; 1:30 AM</span>
-          <span class="gig-note">Calgary, AB</span>
-        </div>
-      </div>
-      <p class="section-note">New dates go up on
-        <a href="https://www.instagram.com/machinegunrabbit" target="_blank" rel="noopener">@machinegunrabbit</a> first.
-      </p>
-    </section>
+  <section id="set" class="act"><div class="wrap"><div class="panel pink">
+    <p class="eyebrow">The Jukebox</p><h2>Songs you already know the words to</h2>
+    <div class="now" aria-live="polite"><b id="nowCode">A1</b><strong id="nowSong">Mamma Mia</strong><span id="nowLine">Ends sets. Starts parties. Does not apologize.</span></div>
+    <ul class="songs">
+      <li><button class="song" type="button" data-code="A1" data-song="Mamma Mia" data-line="Ends sets. Starts parties. Does not apologize."><i>A1</i>Mamma Mia</button></li>
+      <li><button class="song" type="button" data-code="B1" data-song="Poker Face"><i>B1</i>Poker Face</button></li>
+      <li><button class="song" type="button" data-code="A2" data-song="Mr. Brightside"><i>A2</i>Mr. Brightside</button></li>
+      <li><button class="song" type="button" data-code="B2" data-song="Basket Case" data-line="Green Day. 1994."><i>B2</i>Basket Case</button></li>
+      <li><button class="song" type="button" data-code="A3" data-song="Highway to Hell"><i>A3</i>Highway to Hell</button></li>
+      <li><button class="song" type="button" data-code="B3" data-song="Heaven Is a Place on Earth"><i>B3</i>Heaven Is a Place on Earth</button></li>
+      <li><button class="song" type="button" data-code="A4" data-song="American Idiot" data-line="Suddenly everyone in the room is 17 again."><i>A4</i>American Idiot</button></li>
+      <li><button class="song" type="button" data-code="B4" data-song="We Got the Beat"><i>B4</i>We Got the Beat</button></li>
+      <li><button class="song" type="button" data-code="A5" data-song="Teenage Dirtbag"><i>A5</i>Teenage Dirtbag</button></li>
+      <li><button class="song" type="button" data-code="B5" data-song="All the Small Things"><i>B5</i>All the Small Things</button></li>
+      <li><button class="song" type="button" data-code="A6" data-song="Blitzkrieg Bop" data-line="Tyler's vote for the opener. Every time."><i>A6</i>Blitzkrieg Bop</button></li>
+      <li><button class="song" type="button" data-code="B6" data-song="Does Your Mother Know" data-line="Yes, your mother probably does know. She's been to one of our shows."><i>B6</i>Does Your Mother Know</button></li>
+    </ul>
+    <p class="sub">A sample. We play over 50.</p>
+  </div></div></section>
 
-    <!-- The Set -->
-    <section id="set" class="section section-raised">
-      <div class="section-inner">
-        <div class="section-head">
-          <p class="eyebrow">The set</p>
-          <h2 class="section-title">Songs you already know the words to</h2>
-          <p class="section-sub">A sample. We play over 50, from ABBA to AC/DC. The rest turn up on the night.</p>
-        </div>
-        <div class="song-chips">
-          <span class="chip">Mamma Mia <em>ABBA</em></span>
-          <span class="chip">Mr. Brightside <em>The Killers</em></span>
-          <span class="chip">Highway to Hell <em>AC/DC</em></span>
-          <span class="chip">American Idiot <em>Green Day</em></span>
-          <span class="chip">Teenage Dirtbag <em>Wheatus</em></span>
-          <span class="chip">Poker Face <em>Lady Gaga</em></span>
-          <span class="chip">Basket Case <em>Green Day</em></span>
-          <span class="chip">Heaven Is a Place on Earth <em>Belinda Carlisle</em></span>
-          <span class="chip">We Got the Beat <em>The Go-Go's</em></span>
-          <span class="chip">All the Small Things <em>blink-182</em></span>
-          <span class="chip">Blitzkrieg Bop <em>Ramones</em></span>
-          <span class="chip">Does Your Mother Know <em>ABBA</em></span>
-        </div>
-      </div>
-    </section>
+  <section id="band" class="act"><div class="wrap"><div class="panel">
+    <p class="eyebrow">The Green Room</p>
+    <div class="who" aria-live="polite"><strong id="memberName">Phil</strong><small id="memberRole">Lead guitar</small><p id="memberLine">Loudest opinion on tone.</p></div>
+    <ul class="lineup"><li data-name="Phil" data-role="Lead guitar" data-line="Loudest opinion on tone."><strong>Phil</strong> <span>Lead guitar</span> <em>Loudest opinion on tone.</em></li><li data-name="Libby" data-role="Vocals" data-line="She wins every setlist argument."><strong>Libby</strong> <span>Vocals</span> <em>She wins every setlist argument.</em></li><li data-name="Tyler" data-role="Drums" data-line="Votes Blitzkrieg Bop for the opener. Every time."><strong>Tyler</strong> <span>Drums</span> <em>Votes Blitzkrieg Bop for the opener. Every time.</em></li><li data-name="Mike" data-role="Vocals, rhythm guitar" data-line="Changes his hair as often as his guitars."><strong>Mike</strong> <span>Vocals, rhythm guitar</span> <em>Changes his hair as often as his guitars.</em></li><li data-name="Jeff" data-role="Bass" data-line="Bass face is a real thing."><strong>Jeff</strong> <span>Bass</span> <em>Bass face is a real thing.</em></li></ul>
+    <div class="picks">
+      <button class="pick" type="button">Phil</button><button class="pick" type="button">Libby</button><button class="pick" type="button">Tyler</button><button class="pick" type="button">Mike</button><button class="pick" type="button">Jeff</button>
+    </div>
+  </div></div></section>
 
-    <!-- The Band -->
-    <section id="band" class="section">
-      <div class="section-head">
-        <p class="eyebrow">The band</p>
-        <h2 class="section-title">Five people, one job</h2>
-        <p class="section-sub">Not a concert — a party. Calgary, AB.</p>
-        <div class="rule rule-gold"></div>
-      </div>
-      <div class="band-grid">
-        <div class="band-photos">
-          <img src="assets/photos/machine-gun-rabbit-band-calgary-2026.jpg" alt="Machine Gun Rabbit, all five members together on stage in Calgary" class="band-photo-lg" loading="lazy" width="1400" height="934" />
-          <div class="band-photo-pair">
-            <img src="assets/photos/machine-gun-rabbit-libby-vocals.jpg" alt="Libby singing lead for Machine Gun Rabbit" loading="lazy" width="800" height="534" />
-            <img src="assets/photos/machine-gun-rabbit-mike-vocals.jpg" alt="Mike singing for Machine Gun Rabbit" loading="lazy" width="800" height="534" />
-          </div>
-        </div>
-        <div class="member-cards">
-          <div class="member"><span class="member-name">Libby</span><span class="member-role">Vocals</span><p class="member-line">She wins every setlist argument.</p></div>
-          <div class="member"><span class="member-name">Mike</span><span class="member-role">Vocals, rhythm guitar</span><p class="member-line">Changes his hair as often as his guitars.</p></div>
-          <div class="member"><span class="member-name">Phil</span><span class="member-role">Lead guitar</span><p class="member-line">Loudest opinion on tone.</p></div>
-          <div class="member"><span class="member-name">Jeff</span><span class="member-role">Bass</span><p class="member-line">Bass face is a real thing.</p></div>
-          <div class="member"><span class="member-name">Tyler</span><span class="member-role">Drums</span><p class="member-line">Votes Blitzkrieg Bop for the opener. Every time.</p></div>
-        </div>
-      </div>
-    </section>
+  <section id="back" class="act right"><div class="wrap"><div class="panel pink">
+    <p class="eyebrow">The Back Door</p><h2>Book us... really?</h2>
+    <p class="kicker">Unless you really want to have a great time.</p>
+    <p class="sub">Weddings, private parties, bars and festivals. Call or text Phil.</p>
+    <a class="phone" href="tel:+14036698116">(403) 669-8116</a>
+    <div class="actions"><a class="btn btn-pink" href="book.html">Book the band</a><a class="btn btn-gold" href="https://www.instagram.com/machinegunrabbit">Follow on Instagram</a><a class="btn btn-line" href="https://www.facebook.com/p/Machine-Gun-Rabbit-100047671462257/">Facebook</a></div>
+  </div></div></section>
+</main>
 
-    <!-- FAQ -->
-    <section id="faq" class="section section-raised">
+<section id="faq" class="section section-raised">
       <div class="section-inner">
         <div class="section-head">
           <p class="eyebrow">Questions</p>
@@ -252,22 +206,7 @@
       </div>
     </section>
 
-    <!-- Follow / Book -->
-    <section id="book" class="section section-center">
-      <div class="section-head section-head-center">
-        <p class="eyebrow">Follow / book</p>
-        <h2 class="section-title">Nobody came here to sit down</h2>
-        <p class="section-sub">Follow the dates on Instagram and Facebook. To book us, call or text Phil at (403) 669-8116.</p>
-      </div>
-      <div class="cta-row cta-row-center">
-        <a class="btn btn-book btn-lg" href="book.html">Book the band</a>
-        <a class="btn btn-follow btn-lg" href="https://www.instagram.com/machinegunrabbit" target="_blank" rel="noopener">Instagram</a>
-        <a class="btn btn-follow btn-lg" href="https://www.facebook.com/p/Machine-Gun-Rabbit-100047671462257/" target="_blank" rel="noopener">Facebook</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
+<footer class="site-footer">
     <p class="footer-meta">
       <a href="https://www.instagram.com/machinegunrabbit" target="_blank" rel="noopener">Instagram</a>
       &nbsp;&middot;&nbsp;
@@ -280,7 +219,18 @@
     <p class="footer-copy">&copy; <span id="year">2026</span> Machine Gun Rabbit</p>
   </footer>
 
-  <script src="script.js"></script>
-  <script data-goatcounter="https://machinegunrabbit.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/MaskPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+<script src="assets/js/world.js"></script>
+<script src="assets/js/fx.js"></script>
+<script src="assets/js/motion.js"></script>
+<script src="script.js"></script>
+<script data-goatcounter="https://machinegunrabbit.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
