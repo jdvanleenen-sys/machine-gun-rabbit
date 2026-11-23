@@ -1,4 +1,4 @@
-/* The venue: facade, room, stage, light rig, band, box office, jukebox, crowd and confetti. */
+/* The venue: facade, room, stage, light rig, band, box office, jukebox, crowd and bubbles. */
 (function () {
   'use strict';
   var PINK = 0xff1493, GOLD = 0xc9a227, WHITE = 0xffffff;
@@ -240,12 +240,20 @@
     return haze;
   }
 
-  function buildConfetti(scene, count) {
-    var mesh = new THREE.InstancedMesh(new THREE.PlaneGeometry(.17, .28), new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, fog: false }), count);
-    var colors = [new THREE.Color(PINK), new THREE.Color(GOLD), new THREE.Color(WHITE)], bits = [], hidden = new THREE.Matrix4().makeScale(0, 0, 0);
-    for (var i = 0; i < count; i++) { mesh.setMatrixAt(i, hidden); mesh.setColorAt(i, colors[i % 3]); bits.push({ life: 0, p: new THREE.Vector3(), v: new THREE.Vector3(), spin: Math.random() * 6 }); }
+  function buildBubbles(scene, count) {
+    var geo = new THREE.PlaneGeometry(1, 1), seeds = new Float32Array(count), fades = new Float32Array(count), bits = [];
+    for (var n = 0; n < count; n++) { seeds[n] = Math.random(); bits.push({ life: 0, max: 1, size: .2, p: new THREE.Vector3(), v: new THREE.Vector3() }); }
+    geo.setAttribute('aSeed', new THREE.InstancedBufferAttribute(seeds, 1));
+    geo.setAttribute('aFade', new THREE.InstancedBufferAttribute(fades, 1));
+    var mat = new THREE.ShaderMaterial({
+      uniforms: { uTime: { value: 0 } }, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+      vertexShader: 'attribute float aSeed;attribute float aFade;varying vec2 vUv;varying float vSeed;varying float vFade;void main(){vUv=uv;vSeed=aSeed;vFade=aFade;float s=length(instanceMatrix[0].xyz);vec4 c=modelViewMatrix*instanceMatrix*vec4(0.,0.,0.,1.);c.xy+=position.xy*s;gl_Position=projectionMatrix*c;}',
+      fragmentShader: 'uniform float uTime;varying vec2 vUv;varying float vSeed;varying float vFade;vec3 film(float t){return .58+.42*cos(6.283*(t+vec3(0.,.33,.67)));}void main(){vec2 p=vUv*2.-1.;float r=length(p);if(r>1.)discard;float rim=smoothstep(.6,.96,r)*smoothstep(1.,.95,r);float body=.05+.13*r*r;float a=atan(p.y,p.x);vec3 col=film(r*1.4+a*.08+vSeed+uTime*.12);float hi=smoothstep(.22,.02,length((p-vec2(-.36,.4))*vec2(1.,1.5)));float hi2=smoothstep(.1,0.,length(p-vec2(.38,-.42)))*.6;gl_FragColor=vec4((col*(rim*.82+body*.8)+vec3(hi*.55+hi2*.7))*vFade,1.);}'
+    });
+    var mesh = new THREE.InstancedMesh(geo, mat, count), hidden = new THREE.Matrix4().makeScale(0, 0, 0);
+    for (var i = 0; i < count; i++) mesh.setMatrixAt(i, hidden);
     mesh.frustumCulled = false; mesh.renderOrder = 60; scene.add(mesh);
-    return { mesh: mesh, bits: bits, next: 0, hidden: hidden };
+    return { mesh: mesh, bits: bits, next: 0, hidden: hidden, fades: fades, seeds: seeds };
   }
 
   window.MGRWorld = function (canvas, low) {
@@ -256,8 +264,8 @@
     var video = document.getElementById('ledLoop');
     buildRoom(scene); var bulbs = buildFacade(scene, soft); buildStage(scene, soft, video, low);
     var beams = buildBeams(scene, low ? 6 : 10), booth = buildBooth(scene, soft), juke = buildJukebox(scene, soft);
-    var crowd = buildCrowd(scene), haze = buildHaze(scene, soft, low ? 22 : 56), confetti = buildConfetti(scene, low ? 150 : 320);
-    var world = { low: low, soft: soft, wallTextures: scene.userData.walls, renderer: renderer, scene: scene, camera: camera, members: [], ready: false, juke: juke, booth: booth, bulbs: bulbs, beams: beams, crowd: crowd, haze: haze, confetti: confetti, focus: -1, hover: -1, aim: new THREE.Vector3(0, 2, -6), hit: 0 };
+    var crowd = buildCrowd(scene), haze = buildHaze(scene, soft, low ? 22 : 56), bubbles = buildBubbles(scene, low ? 180 : 420);
+    var world = { low: low, soft: soft, wallTextures: scene.userData.walls, renderer: renderer, scene: scene, camera: camera, members: [], ready: false, juke: juke, booth: booth, bulbs: bulbs, beams: beams, crowd: crowd, haze: haze, bubbles: bubbles, focus: -1, hover: -1, aim: new THREE.Vector3(0, 2, -6), hit: 0 };
     world.members = buildBand(scene, function () { world.ready = true; });
     return world;
   };

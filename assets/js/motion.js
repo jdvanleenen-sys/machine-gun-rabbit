@@ -2,7 +2,6 @@
 (function () {
   'use strict';
   var $ = function (id) { return document.getElementById(id); };
-  var DEFAULT_LINE = 'In the set. You know the words.';
   var PEOPLE = Array.prototype.map.call(document.querySelectorAll('.lineup li'), function (li) { return [li.dataset.name, li.dataset.role, li.dataset.line]; });
 
   function fillNextShow() {
@@ -17,7 +16,7 @@
   if (!window.THREE) { document.body.classList.add('no3d'); return; }
 
   var world, fx, anchors = [], keys = [], smoothY = 0, pointer = { x: 0, y: 0, sx: 0, sy: 0 }, motionOn = true, memberIndex = -1;
-  var position = new THREE.Vector3(), look = new THREE.Vector3(), ray = new THREE.Raycaster(), matrix = new THREE.Matrix4(), quat = new THREE.Quaternion(), euler = new THREE.Euler(), one = new THREE.Vector3(1, 1, 1);
+  var position = new THREE.Vector3(), look = new THREE.Vector3(), ray = new THREE.Raycaster(), matrix = new THREE.Matrix4();
   var ease = function (t) { return t * t * (3 - 2 * t); };
 
   function hasWebGL() {
@@ -64,26 +63,36 @@
     else world.focus = -1;
   }
 
-  function burst(point, amount) {
-    var c = world.confetti;
+  function burst(point, amount, sweep) {
+    var b = world.bubbles, toCamera = new THREE.Vector3();
     for (var n = 0; n < amount; n++) {
-      var bit = c.bits[c.next]; c.next = (c.next + 1) % c.bits.length;
-      bit.life = 2.4 + Math.random() * 1.2; bit.p.copy(point);
-      bit.v.set((Math.random() - .5) * 8, 3 + Math.random() * 6, (Math.random() - .5) * 8);
+      var bit = b.bits[b.next]; b.next = (b.next + 1) % b.bits.length;
+      bit.max = bit.life = 3.4 + Math.random() * 3.2;
+      bit.size = .14 + Math.pow(Math.random(), 2.2) * .56;
+      bit.p.copy(point).add(new THREE.Vector3((Math.random() - .5) * .5, (Math.random() - .5) * .5, (Math.random() - .5) * .5));
+      toCamera.copy(world.camera.position).sub(point).normalize().multiplyScalar(1.2 + Math.random() * 3.2);
+      bit.v.set((Math.random() - .5) * 8.5, 1.4 + Math.random() * 3.6, (Math.random() - .5) * 6).add(toCamera);
+      if (sweep) bit.v.x -= point.x * (.25 + Math.random() * .62);
     }
   }
 
-  function animateConfetti(dt, t) {
-    var c = world.confetti, live = false;
-    c.bits.forEach(function (bit, i) {
+  function animateBubbles(dt, t) {
+    var b = world.bubbles, live = false, drag = Math.pow(.28, dt);
+    b.mesh.material.uniforms.uTime.value = t;
+    b.bits.forEach(function (bit, i) {
       if (bit.life <= 0) return;
-      live = true; bit.life -= dt; bit.v.y -= 6.2 * dt; bit.v.multiplyScalar(.985); bit.p.addScaledVector(bit.v, dt);
-      if (bit.life <= 0) { c.mesh.setMatrixAt(i, c.hidden); return; }
-      euler.set(t * 4 + bit.spin, t * 3 + i, bit.spin); quat.setFromEuler(euler);
-      matrix.compose(bit.p, quat, one); c.mesh.setMatrixAt(i, matrix);
+      live = true; bit.life -= dt;
+      if (bit.life <= 0) { b.mesh.setMatrixAt(i, b.hidden); b.fades[i] = 0; return; }
+      var seed = b.seeds[i] * 6.28, age = bit.max - bit.life, popping = bit.life < .14 ? (.14 - bit.life) / .14 : 0;
+      bit.v.multiplyScalar(drag); bit.v.y += (.2 + b.seeds[i] * .24) * dt;
+      bit.p.addScaledVector(bit.v, dt);
+      bit.p.x += Math.sin(t * 1.3 + seed) * .24 * dt; bit.p.z += Math.cos(t * 1.1 + seed) * .2 * dt;
+      var s = bit.size * Math.min(1, .35 + age * 3.2) * (1 + popping * .5);
+      matrix.makeScale(s, s, s).setPosition(bit.p); b.mesh.setMatrixAt(i, matrix);
+      b.fades[i] = Math.min(1, age / .16) * (1 - popping);
     });
-    if (live || c.wasLive) c.mesh.instanceMatrix.needsUpdate = true;
-    c.wasLive = live;
+    if (live || b.wasLive) { b.mesh.instanceMatrix.needsUpdate = true; b.mesh.geometry.attributes.aFade.needsUpdate = true; }
+    b.wasLive = live;
   }
 
   function animateRoom(t) {
@@ -126,7 +135,7 @@
     var y = window.scrollY;
     smoothY = motionOn ? smoothY + (y - smoothY) * .085 : y;
     updateMemberFromScroll(smoothY); placeCamera();
-    if (motionOn) { animateRoom(t); fx.update(t, dt); animateConfetti(dt, t); }
+    if (motionOn) { animateRoom(t); fx.update(t, dt); animateBubbles(dt, t); }
     fx.render();
     if (!document.body.classList.contains('live') && world.ready) document.body.classList.add('live');
   }
@@ -156,7 +165,7 @@
     document.querySelectorAll('.song').forEach(function (b) {
       b.addEventListener('click', function () {
         document.querySelectorAll('.song').forEach(function (s) { s.setAttribute('aria-pressed', s === b ? 'true' : 'false'); });
-        $('nowCode').textContent = b.dataset.code; $('nowSong').textContent = b.dataset.song; $('nowLine').textContent = b.dataset.line || DEFAULT_LINE;
+        $('nowCode').textContent = b.dataset.code; $('nowSong').textContent = b.dataset.song; $('nowLine').textContent = b.dataset.line;
         world.hit = 1; world.juke.show(b.dataset.code, b.dataset.song, b.dataset.code.charAt(0) === 'A' ? '#ff1493' : '#c9a227');
         if (motionOn) { burst(new THREE.Vector3(26.6, 6, 2), 44); fx.addHype(.18); }
       });
@@ -192,7 +201,7 @@
     window.addEventListener('resize', layout); window.addEventListener('load', layout);
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) setMotion(false); else playLeds();
     requestAnimationFrame(loop);
-    if (location.search.indexOf('mgrtest') > -1) window.MGRTest = { fx: fx, burst: function () { burst(new THREE.Vector3(0, 6, 1), 80); }, state: function () { return { ready: world.ready, members: world.members.filter(Boolean).length, y: Math.round(smoothY) }; } };
+    if (location.search.indexOf('mgrtest') > -1) window.MGRTest = { fx: fx, bubbles: function () { return world.bubbles.bits.filter(function (b) { return b.life > 0; }).length; }, burst: function () { burst(new THREE.Vector3(0, 6, 1), 80); }, state: function () { return { ready: world.ready, members: world.members.filter(Boolean).length, y: Math.round(smoothY) }; } };
   }
 
   var fonts = document.fonts && document.fonts.load ? Promise.all([document.fonts.load('236px Anton'), document.fonts.ready]) : Promise.resolve();

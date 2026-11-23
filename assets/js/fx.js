@@ -122,13 +122,13 @@
     var pools = addPools(world), smoke = addSmoke(world, low ? 9 : 22), tickets = addTickets(world), juke = addJukeboxParts(world), composer = addBloom(world);
     addReflections(world); addGear(world);
     var hype = 0, shots = [], hit = new THREE.Vector3(), dir = new THREE.Vector3(), m = new THREE.Matrix4(), meter = document.getElementById('hypeFill'), tag = document.getElementById('hypeLabel');
-    var neon = new THREE.Color(), cannons = [[-13, 2, -2], [-5, 2, -2], [5, 2, -2], [13, 2, -2]];
+    var neon = new THREE.Color(), cannons = [[-15, 2.4, -3], [-11.5, 2, -1.5], [11.5, 2, -1.5], [15, 2.4, -3]];
 
     function drop() {
       hype = 0; world.hit = 1; tag.textContent = "Now that's a crowd.";
       setTimeout(function () { tag.textContent = 'Crowd noise'; }, 2600);
       world.members.forEach(function (b) { if (b) b.userData.jump = 1; });
-      for (var i = 0; i < 3; i++) shots.push(i * .32);
+      for (var i = 0; i < 6; i++) shots.push(i * .2);
     }
     function updateLights(t) {
       pools.forEach(function (p) {
@@ -153,7 +153,7 @@
       world.crowd.forEach(function (r, i) { r.position.y += Math.abs(Math.sin(performance.now() / 150 + i)) * hype * .55; });
       for (var i = shots.length - 1; i >= 0; i--) {
         shots[i] -= dt;
-        if (shots[i] <= 0) { shots.splice(i, 1); cannons.forEach(function (c) { burst(new THREE.Vector3(c[0], c[1], c[2]), low ? 22 : 34); }); }
+        if (shots[i] <= 0) { shots.splice(i, 1); cannons.forEach(function (c) { burst(new THREE.Vector3(c[0], c[1], c[2]), low ? 7 : 16, true); }); }
       }
     }
     return {
