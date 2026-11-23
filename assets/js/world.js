@@ -119,7 +119,7 @@
     });
     scene.userData.walls = walls;
     glow(scene, soft, PINK, 15, 0, 13.6, -15, .3);
-    new THREE.TextureLoader().load('assets/logo-lips.png', function (t) {
+    new THREE.TextureLoader().load('assets/logo-lips-512.webp', function (t) {
       var lips = new THREE.Mesh(new THREE.PlaneGeometry(3.8, 3.42), new THREE.MeshBasicMaterial({ map: t, transparent: true, fog: false }));
       lips.position.set(0, 14.8, -14.9); scene.add(lips);
     });

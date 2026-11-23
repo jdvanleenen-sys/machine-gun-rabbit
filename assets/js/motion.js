@@ -130,7 +130,7 @@
   }
 
   function showGun(y) {
-    var faq = $('faq'), hide = !motionOn || y < anchors[1] * .55 || (faq ? y + 150 > faq.offsetTop : y >= anchors[6] + 200), gun = $('bubbleGun');
+    var solid = $('about'), hide = !motionOn || y < anchors[1] * .55 || y + 150 > solid.offsetTop, gun = $('bubbleGun');
     if (gun.hidden !== hide) gun.hidden = hide;
   }
 

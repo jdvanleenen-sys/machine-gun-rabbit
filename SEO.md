@@ -7,11 +7,10 @@ site, so the multi-page items (hub-and-spoke, per-post interlinking) are roadmap
 ## Done (live)
 - One `<title>` (57 chars, keyword "Calgary's Party Band"), one meta description
   (~150 chars), one real text `<h1>` (band name was image-only before), canonical.
-- Structured data (JSON-LD): `MusicGroup`, one `MusicEvent` per confirmed night (nine,
-  Oct 16 to Dec 5, with start/end times), `Place` venues, `FAQPage`. Mirrors the
-  visible Upcoming Shows list; drop each gig from both after it passes.
-  Oct 16 and 17 at Rendesvouz are cancelled: struck through in the list and
-  `EventCancelled` in the JSON-LD. Remove both after Oct 17.
+- Structured data (JSON-LD): `WebSite`, `MusicGroup`, one `MusicEvent` per confirmed night, `Place` venues, `FAQPage`, and `ContactPage` on the booking page. Mirrors the visible Upcoming Shows list; drop each gig from both after it passes.
+- Event times must use Calgary's real offset: `-07:00` in winter and `-06:00` in summer. `check_site.py` checks this.
+- The 3D canvas is invisible to crawlers, so the visible H1, About section, photo, member list and FAQ carry the search content.
+- `llms.txt` summarizes the band for AI tools. It is low-cost and its effect is unproven.
 - Visible FAQ, answer-first, matching the FAQ schema (feeds AI answer engines).
 - Descriptive alt text on every content image; decorative images have empty alt.
 - Keyword image filenames (`machine-gun-rabbit-*`), not generic.

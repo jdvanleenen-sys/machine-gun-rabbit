@@ -51,7 +51,7 @@ h2 { font: 400 clamp(36px, 4.4vw, 60px)/.96 var(--display); text-transform: uppe
 .sub { color: #d6d6d6; }
 .actions { display: flex; flex-wrap: wrap; gap: 8px; }
 
-#door { min-height: 170vh; align-items: flex-start; padding-top: calc(100vh - 196px); }
+#door { min-height: 170vh; align-items: flex-start; padding-top: calc(100vh - 240px); }
 .gate { width: 100%; max-width: 1320px; margin-inline: auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .ticket { display: grid; grid-template-columns: minmax(0, 1fr) auto; background: var(--raised); border: 1px solid var(--gold); border-radius: 12px; }
 .ticket > div { padding: 12px 20px; min-width: 0; }
@@ -98,7 +98,7 @@ h2 { font: 400 clamp(36px, 4.4vw, 60px)/.96 var(--display); text-transform: uppe
   .panel { padding: 16px; }
   .act { align-items: flex-end; }
   .right > .wrap { justify-content: stretch; }
-  #door { padding-top: calc(100vh - 236px); }
+  #door { padding-top: calc(100vh - 300px); }
   #stage { padding-top: calc(100vh - 266px); }
   #stage .panel { padding: 12px 16px; }
   #stage h2 { white-space: normal; }
@@ -110,7 +110,7 @@ h2 { font: 400 clamp(36px, 4.4vw, 60px)/.96 var(--display); text-transform: uppe
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 
-#faq, .site-footer { position: relative; z-index: 6; background: var(--raised); padding: 88px var(--gr) 56px var(--gl); border-top: 1px solid var(--line); }
+#about, #faq, .site-footer { position: relative; z-index: 6; background: var(--raised); padding: 88px var(--gr) 56px var(--gl); border-top: 1px solid var(--line); }
 .section-inner { max-width: 1080px; margin-inline: auto; }
 .section-title { margin-top: 8px; font: 400 clamp(32px, 4vw, 48px)/.98 var(--display); text-transform: uppercase; }
 .faq { display: grid; gap: 16px; margin-top: 24px; max-width: 62ch; }
@@ -126,7 +126,7 @@ h2 { font: 400 clamp(36px, 4.4vw, 60px)/.96 var(--display); text-transform: uppe
 .footer-word { height: 16px; width: auto; margin: 16px auto 0; opacity: .85; }
 .footer-copy { margin-top: 12px; font-size: 12px; color: var(--muted); }
 a.phone { display: block; text-decoration: none; }
-.lineup { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); list-style: none; }
+.lineup { display: grid; gap: 8px; margin-top: 16px; list-style: none; }
 .lineup strong { font: 400 24px/1 var(--display); text-transform: uppercase; }
 .lineup span { font-size: 12px; font-weight: 600; color: var(--pink-bright); }
 .lineup em { display: block; font-style: normal; color: var(--muted); }
@@ -134,8 +134,14 @@ a.phone { display: block; text-decoration: none; }
 html:not(.js) #world, .no3d #world, html:not(.js) .hype, .no3d .hype, html:not(.js) .led, .no3d .led, html:not(.js) .walk, .no3d .walk, html:not(.js) .who, .no3d .who, html:not(.js) .picks, .no3d .picks { display: none; }
 html:not(.js) .act, .no3d .act, html:not(.js) #door, .no3d #door, html:not(.js) #stage, .no3d #stage, html:not(.js) #band, .no3d #band, html:not(.js) #back, .no3d #back { min-height: 0; padding-top: 88px; padding-bottom: 16px; }
 html:not(.js) #band .wrap, .no3d #band .wrap { position: static; }
-html:not(.js) .lineup, .no3d .lineup { position: static; width: auto; height: auto; clip-path: none; display: grid; gap: 8px; }
-html:not(.js) h1.sr { position: static; width: auto; height: auto; clip-path: none; white-space: normal; font: 400 clamp(56px, 12vw, 120px)/.92 var(--display); text-transform: uppercase; }
 html:not(.js) #door, .no3d #door { display: block; }
 html:not(.js) #motion, .no3d #motion { display: none; }
 .no3d .gate, html:not(.js) .gate { margin-top: 24px; }
+.gate-main { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.venue-h1 { width: fit-content; max-width: 100%; padding: 4px 10px; background: var(--scrim); border-radius: 4px; font: 400 clamp(20px, 2vw, 28px)/1.1 var(--display); text-transform: uppercase; }
+html:not(.js) .venue-h1, .no3d .venue-h1 { padding: 0; background: none; font-size: clamp(40px, 10vw, 72px); }
+.about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+.about-copy { margin-top: 16px; color: #d6d6d6; }
+.about-copy a { color: var(--pink-bright); }
+.about-photo { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 12px; }
+@media (max-width: 860px) { .about-grid { grid-template-columns: minmax(0, 1fr); } }
