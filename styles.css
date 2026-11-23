@@ -82,8 +82,8 @@ img { max-width: 100%; }
 .cta-row-center { justify-content: center; }
 .hero .cta-row { justify-content: center; }
 
-/* Watch — vertical live clip */
-.band-video { display: block; width: min(100%, 400px); height: auto; aspect-ratio: 9 / 16; margin: 24px auto 0; background: var(--bg-raised); border: 1px solid var(--line); border-radius: var(--radius-card); }
+/* On stage photo */
+.stage-photo { display: block; width: 100%; height: auto; margin-top: 24px; border: 1px solid var(--line); border-radius: var(--radius-card); }
 
 /* Where We Play — upcoming gig list (next show highlighted) */
 .gig-list { display: grid; gap: 12px; margin-top: 24px; }

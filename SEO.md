@@ -18,8 +18,7 @@ site, so the multi-page items (hub-and-spoke, per-post interlinking) are roadmap
 - Photos optimized: Sept 19 Langdon shots resized (1400px hero/band, 800px pair),
   JPEG, ~0.8 MB total. `width`/`height` on every content image (no layout shift).
   `loading="lazy"` below the fold.
-- Live video (Sept 19 Langdon clip) self-hosted as H.264 MP4 with a poster frame,
-  so it plays in every browser; `preload="metadata"` keeps first load light.
+- No video on the site. The Sept 19 clip was removed on 2026-11-22 because its music is dubbed from the original artists, so it must not be presented as the band's sound.
 - Custom domain `machinegunrabbit.com` live (CNAME); canonical, OG image, sitemap and
   JSON-LD `@id`s all use it.
 - Visitor analytics: GoatCounter on `index.html` and `book.html` (cookieless, no
@@ -34,8 +33,8 @@ site, so the multi-page items (hub-and-spoke, per-post interlinking) are roadmap
   `sitemap.xml`, then Inspect + Request indexing. Bonus: import into Bing Webmaster
   Tools (feeds ChatGPT search).
 ## Roadmap (when there's a video / more pages)
-- The Sept 19 clip is on the home page (self-hosted). Next: post it to YouTube, then build a **recap/blog page**
-  here that embeds it, targets one keyword ("Machine Gun Rabbit live at Langdon"),
+- Use a real recording of the band, never the dubbed Sept 19 clip. Post it to YouTube, then build a **recap/blog page**
+  here that embeds it, targets one keyword ("Machine Gun Rabbit live"),
   answers in the first sentence, links out to an authority source, and adds
   `VideoObject` schema + the embed. That turns the site multi-page and starts the
   hub-and-spoke Fred describes.
